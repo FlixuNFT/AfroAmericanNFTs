@@ -56,7 +56,8 @@ body {
     color: white;
     max-width: 800px;
 }
-.custom-shape-divider-bottom-1646592696 {
+
+.shape__divider {
     /* position: absolute; */
     bottom: 0;
     left: 0;
@@ -66,7 +67,7 @@ body {
     /* transform: rotate(180deg); */
 }
 
-.custom-shape-divider-bottom-1646592696 svg {
+.shape__divider svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
@@ -74,6 +75,26 @@ body {
     transform: rotateY(180deg);
 }
 
-.custom-shape-divider-bottom-1646592696 .shape-fill {
+.shape__divider .shape-fill {
     fill: #222333;
+}
+
+/* Cards */
+.cards__wrapper {
+    background-color: white;
+    /* background-color: var(--dark); */
+    max-width: 1280px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.card-image__wrapper {
+    max-width: 400px;
+}
+.card__wrapper {
+    background-color: white;
+    border: solid 4px var(--card-border);
+    border-radius: 18px;
+    max-width: 400px;
 }
