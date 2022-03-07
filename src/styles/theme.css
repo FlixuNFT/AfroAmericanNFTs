@@ -27,6 +27,18 @@ body {
     src: url("../fonts/PlusJakartaSans-Regular.woff");
 }
 
+p {
+    margin: 12px 0;
+}
+
+.bold-title {
+    font-family: "PlusJakartaSansExtraBold", Arial, Helvetica, "sans-serif";
+}
+
+.regular-title {
+    font-family: "PlusJakartaSanRegular", Arial, Helvetica, "sans-serif";
+}
+
 .hero-section__wrapper {
     background-color: var(--secondaryDark);
     width: 100vw;

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
+import "./styles/output.css";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
 import i1 from "./assets/images/10.jpg";
+import svgSmile from "./assets/graphics/smile.svg";
 import i2 from "./assets/images/25.jpg";
 import i3 from "./assets/images/100.jpg";
 import i4 from "./assets/images/500.jpg";
@@ -29,9 +31,9 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 export const StyledButton = styled.button`
     padding: 10px;
-    border-radius: 50px;
+    border-radius: 18px;
     border: none;
-    background-color: #000000;
+    background-color: var(--primary);
     padding: 10px;
     font-weight: bold;
     color: #ffffff;
@@ -49,7 +51,7 @@ export const StyledButton = styled.button`
 
 export const StyledRoundButton = styled.button`
     padding: 10px;
-    border-radius: 100%;
+    border-radius: 18px;
     border: none;
     background-color: var(--primary);
     padding: 10px;
@@ -136,7 +138,7 @@ const HeroSection = (props) => {
 const ShapeDivider = (props) => {
     return (
         <div className='shape__divider'>
-            <svg dataName='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
+            <svg dataname='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
                 <path
                     d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z'
                     opacity='.25'
@@ -153,6 +155,18 @@ const ShapeDivider = (props) => {
                 ></path>
             </svg>
         </div>
+    );
+};
+
+const ArrowIcon = (props) => {
+    return (
+        <svg width='11' height='16' viewBox='0 0 11 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
+            <path
+                id='Vector'
+                d='M10.2437 8.83008L3.60303 15.4707C3.14404 15.9297 2.40186 15.9297 1.94775 15.4707L0.844238 14.3672C0.385254 13.9082 0.385254 13.166 0.844238 12.7119L5.55127 8.00488L0.844238 3.29785C0.385254 2.83887 0.385254 2.09668 0.844238 1.64258L1.94287 0.529297C2.40186 0.0703125 3.14404 0.0703125 3.59814 0.529297L10.2388 7.16992C10.7026 7.62891 10.7026 8.37109 10.2437 8.83008Z'
+                fill='white'
+            />
+        </svg>
     );
 };
 
@@ -355,87 +369,465 @@ const Cards = (props) => {
     }, [blockchain.account]);
 
     return (
-        <section className='cards__wrapper'>
-            <div className='card__wrapper'>
-                <div className='card-image__wrapper'>
-                    <img alt={"example"} src={i1} />
+        <section className=' my-16 bg-dark items-center container flex flex-wrap gap-12 justify-evenly'>
+            <div className='max-w-md'>
+                <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
+                    {Number(data.totalSupply) === 100000 ? (
+                        <>
+                            <img className='rounded-2xl' src={i1} alt='' />
+                            <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl'>
+                                <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
+                                <p className='text-lg text-normalText mt-4 font-semibold'>
+                                    You can still find Afro American for sale on{" "}
+                                    <a target={"_blank"} className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
+                                        Opensea.io
+                                    </a>
+                                </p>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <img className='rounded-2xl' src={i1} alt='' />
+                            <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl text-normalTextg '>
+                                <h1 className='text-white font-bold text-2xl mb-3 hover:text-gray-50 hover:cursor-pointer regular-title'>0.0034 ETH PER $10 NFT</h1>
+                                <div className='tracking-wide mt-8'>
+                                    <p>{feedback}</p>
+                                </div>
+
+                                {blockchain.account === "" || blockchain.smartContract === null ? (
+                                    <div className='space-y-8'>
+                                        <p>Connect to the Ethereum network</p>
+                                        <div className='flex justify-end items-center'>
+                                            <button
+                                                className='btn-primary flex gap-2 justify-end items-center'
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    dispatch(connect());
+                                                    getData();
+                                                }}
+                                            >
+                                                CONNECT
+                                                <ArrowIcon />
+                                            </button>
+                                        </div>
+                                        {blockchain.errorMsg !== "" ? (
+                                            <>
+                                                <p>{blockchain.errorMsg}</p>
+                                            </>
+                                        ) : null}
+                                    </div>
+                                ) : (
+                                    <div className='flex gap-2 justify-end items-center'>
+                                        <div className='text-white flex gap-2 justify-center items-center'>
+                                            <button
+                                                className='btn-secondary quantity'
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    decrementMintAmount();
+                                                }}
+                                            >
+                                                -
+                                            </button>
+                                            <p>{mintAmount}</p>
+                                            <button
+                                                className='btn-secondary quantity'
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    incrementMintAmount();
+                                                }}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+
+                                        <button
+                                            className='btn-primary px-12'
+                                            disabled={claimingNft ? 1 : 0}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                claimNFTs1(mintAmount);
+                                                getData();
+                                            }}
+                                        >
+                                            {claimingNft ? "BUSY" : "BUY "}
+                                            <ArrowIcon />
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </>
+                    )}
                 </div>
-                {Number(data.totalSupply) === 100000 ? (
-                    <>
-                        <p>The sale has ended.</p>
-                        <p>
-                            You can still find Afro American for sale on{" "}
-                            <a target={"_blank"} href={"https://opensea.io/collection/afroamerican"} rel='noreferrer'>
-                                Opensea.io
-                            </a>
-                        </p>
-                    </>
-                ) : (
-                    <>
-                        <p>0.0034 ETH PER $10 NFT</p>
-                        <p>{feedback}</p>
-                        {blockchain.account === "" || blockchain.smartContract === null ? (
-                            <div>
-                                <p>Connect to the Ethereum network</p>
-                                <StyledButton
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        dispatch(connect());
-                                        getData();
-                                    }}
-                                >
-                                    CONNECT
-                                </StyledButton>
-                                {blockchain.errorMsg !== "" ? (
-                                    <>
-                                        <p>{blockchain.errorMsg}</p>
-                                    </>
-                                ) : null}
+            </div>
+
+            <div className='max-w-md'>
+                <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
+                    {Number(data.totalSupply) === 50000 ? (
+                        <>
+                            <img className='rounded-2xl' src={i2} alt='' />
+                            <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl'>
+                                <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
+                                <p className='text-lg text-normalText mt-4 font-semibold'>
+                                    You can still find Afro American for sale on{" "}
+                                    <a target={"_blank"} className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
+                                        Opensea.io
+                                    </a>
+                                </p>
                             </div>
-                        ) : (
-                            <div>
-                                <StyledButton
-                                    disabled={claimingNft ? 1 : 0}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        claimNFTs1(mintAmount);
-                                        getData();
-                                    }}
-                                >
-                                    {claimingNft ? "BUSY" : "BUY "}
-                                </StyledButton>
-                                <StyledRoundButton
-                                    style={{ lineHeight: 0.4 }}
-                                    disabled={claimingNft ? 1 : 0}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        decrementMintAmount();
-                                    }}
-                                >
-                                    -
-                                </StyledRoundButton>
-                                <s.TextDescription
-                                    style={{
-                                        textAlign: "center",
-                                        color: "var(--accent-text)",
-                                    }}
-                                >
-                                    {mintAmount}
-                                </s.TextDescription>
-                                <s.SpacerMedium />
-                                <StyledRoundButton
-                                    disabled={claimingNft ? 1 : 0}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        incrementMintAmount();
-                                    }}
-                                >
-                                    +
-                                </StyledRoundButton>
+                        </>
+                    ) : (
+                        <>
+                            <img className='rounded-2xl' src={i2} alt='' />
+                            <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl text-normalTextg '>
+                                <h1 className='text-white font-bold text-2xl mb-3 hover:text-gray-50 hover:cursor-pointer regular-title'>0.0085 ETH PER $25 NFT</h1>
+                                <div className='tracking-wide mt-8'>
+                                    <p>{feedback}</p>
+                                </div>
+
+                                {blockchain.account === "" || blockchain.smartContract === null ? (
+                                    <div className='space-y-8'>
+                                        <p>Connect to the Ethereum network</p>
+                                        <div className='flex justify-end items-center'>
+                                            <button
+                                                className='btn-primary flex gap-2 justify-end items-center'
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    dispatch(connect());
+                                                    getData();
+                                                }}
+                                            >
+                                                CONNECT
+                                                <ArrowIcon />
+                                            </button>
+                                        </div>
+                                        {blockchain.errorMsg !== "" ? (
+                                            <>
+                                                <p>{blockchain.errorMsg}</p>
+                                            </>
+                                        ) : null}
+                                    </div>
+                                ) : (
+                                    <div className='flex gap-2 justify-end items-center'>
+                                        <div className='text-white flex gap-2 justify-center items-center'>
+                                            <button
+                                                className='btn-secondary quantity'
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    decrementMintAmount();
+                                                }}
+                                            >
+                                                -
+                                            </button>
+                                            <p>{mintAmount}</p>
+                                            <button
+                                                className='btn-secondary quantity'
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    incrementMintAmount();
+                                                }}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+
+                                        <button
+                                            className='btn-primary px-12'
+                                            disabled={claimingNft ? 1 : 0}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                claimNFTs2(mintAmount);
+                                                getData();
+                                            }}
+                                        >
+                                            {claimingNft ? "BUSY" : "BUY "}
+                                            <ArrowIcon />
+                                        </button>
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </>
-                )}
+                        </>
+                    )}
+                </div>
+            </div>
+
+            <div className='max-w-md'>
+                <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
+                    {Number(data.totalSupply) === 50000 ? (
+                        <>
+                            <img className='rounded-2xl' src={i3} alt='' />
+                            <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl'>
+                                <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
+                                <p className='text-lg text-normalText mt-4 font-semibold'>
+                                    You can still find Afro American for sale on{" "}
+                                    <a target={"_blank"} className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
+                                        Opensea.io
+                                    </a>
+                                </p>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <img className='rounded-2xl' src={i3} alt='' />
+                            <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl text-normalTextg '>
+                                <h1 className='text-white font-bold text-2xl mb-3 hover:text-gray-50 hover:cursor-pointer regular-title'>0.034 ETH PER $100 NFT</h1>
+                                <div className='tracking-wide mt-8'>
+                                    <p>{feedback}</p>
+                                </div>
+
+                                {blockchain.account === "" || blockchain.smartContract === null ? (
+                                    <div className='space-y-8'>
+                                        <p>Connect to the Ethereum network</p>
+                                        <div className='flex justify-end items-center'>
+                                            <button
+                                                className='btn-primary flex gap-2 justify-end items-center'
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    dispatch(connect());
+                                                    getData();
+                                                }}
+                                            >
+                                                CONNECT
+                                                <ArrowIcon />
+                                            </button>
+                                        </div>
+                                        {blockchain.errorMsg !== "" ? (
+                                            <>
+                                                <p>{blockchain.errorMsg}</p>
+                                            </>
+                                        ) : null}
+                                    </div>
+                                ) : (
+                                    <div className='flex gap-2 justify-end items-center'>
+                                        <div className='text-white flex gap-2 justify-center items-center'>
+                                            <button
+                                                className='btn-secondary quantity'
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    decrementMintAmount();
+                                                }}
+                                            >
+                                                -
+                                            </button>
+                                            <p>{mintAmount}</p>
+                                            <button
+                                                className='btn-secondary quantity'
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    incrementMintAmount();
+                                                }}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+
+                                        <button
+                                            className='btn-primary px-12'
+                                            disabled={claimingNft ? 1 : 0}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                claimNFTs3(mintAmount);
+                                                getData();
+                                            }}
+                                        >
+                                            {claimingNft ? "BUSY" : "BUY "}
+                                            <ArrowIcon />
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </>
+                    )}
+                </div>
+            </div>
+
+            <div className='max-w-md'>
+                <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
+                    {Number(data.totalSupply) === 50000 ? (
+                        <>
+                            <img className='rounded-2xl' src={i4} alt='' />
+                            <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl'>
+                                <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
+                                <p className='text-lg text-normalText mt-4 font-semibold'>
+                                    You can still find Afro American for sale on{" "}
+                                    <a target={"_blank"} className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
+                                        Opensea.io
+                                    </a>
+                                </p>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <img className='rounded-2xl' src={i4} alt='' />
+                            <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl text-normalTextg '>
+                                <h1 className='text-white font-bold text-2xl mb-3 hover:text-gray-50 hover:cursor-pointer regular-title'>0.17 ETH PER $500 NFT</h1>
+                                <div className='tracking-wide mt-8'>
+                                    <p>{feedback}</p>
+                                </div>
+
+                                {blockchain.account === "" || blockchain.smartContract === null ? (
+                                    <div className='space-y-8'>
+                                        <p>Connect to the Ethereum network</p>
+                                        <div className='flex justify-end items-center'>
+                                            <button
+                                                className='btn-primary flex gap-2 justify-end items-center'
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    dispatch(connect());
+                                                    getData();
+                                                }}
+                                            >
+                                                CONNECT
+                                                <ArrowIcon />
+                                            </button>
+                                        </div>
+                                        {blockchain.errorMsg !== "" ? (
+                                            <>
+                                                <p>{blockchain.errorMsg}</p>
+                                            </>
+                                        ) : null}
+                                    </div>
+                                ) : (
+                                    <div className='flex gap-2 justify-end items-center'>
+                                        <div className='text-white flex gap-2 justify-center items-center'>
+                                            <button
+                                                className='btn-secondary quantity'
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    decrementMintAmount();
+                                                }}
+                                            >
+                                                -
+                                            </button>
+                                            <p>{mintAmount}</p>
+                                            <button
+                                                className='btn-secondary quantity'
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    incrementMintAmount();
+                                                }}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+
+                                        <button
+                                            className='btn-primary px-12'
+                                            disabled={claimingNft ? 1 : 0}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                claimNFTs4(mintAmount);
+                                                getData();
+                                            }}
+                                        >
+                                            {claimingNft ? "BUSY" : "BUY "}
+                                            <ArrowIcon />
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </>
+                    )}
+                </div>
+            </div>
+
+            <div className='max-w-md'>
+                <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
+                    {Number(data.totalSupply) === 50000 ? (
+                        <>
+                            <img className='rounded-2xl' src={i4} alt='' />
+                            <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl'>
+                                <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
+                                <p className='text-lg text-normalText mt-4 font-semibold'>
+                                    You can still find Afro American for sale on{" "}
+                                    <a target={"_blank"} className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
+                                        Opensea.io
+                                    </a>
+                                </p>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <img className='rounded-2xl' src={i4} alt='' />
+                            <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl text-normalTextg '>
+                                <h1 className='text-white font-bold text-2xl mb-3 hover:text-gray-50 hover:cursor-pointer regular-title'>0.34 ETH PER $1000 NFT</h1>
+                                <div className='tracking-wide mt-8'>
+                                    <p>{feedback}</p>
+                                </div>
+
+                                {blockchain.account === "" || blockchain.smartContract === null ? (
+                                    <div className='space-y-8'>
+                                        <p>Connect to the Ethereum network</p>
+                                        <div className='flex justify-end items-center'>
+                                            <button
+                                                className='btn-primary flex gap-2 justify-end items-center'
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    dispatch(connect());
+                                                    getData();
+                                                }}
+                                            >
+                                                CONNECT
+                                                <ArrowIcon />
+                                            </button>
+                                        </div>
+                                        {blockchain.errorMsg !== "" ? (
+                                            <>
+                                                <p>{blockchain.errorMsg}</p>
+                                            </>
+                                        ) : null}
+                                    </div>
+                                ) : (
+                                    <div className='flex gap-2 justify-end items-center'>
+                                        <div className='text-white flex gap-2 justify-center items-center'>
+                                            <button
+                                                className='btn-secondary quantity'
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    decrementMintAmount();
+                                                }}
+                                            >
+                                                -
+                                            </button>
+                                            <p>{mintAmount}</p>
+                                            <button
+                                                className='btn-secondary quantity'
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    incrementMintAmount();
+                                                }}
+                                            >
+                                                +
+                                            </button>
+                                        </div>
+
+                                        <button
+                                            className='btn-primary px-12'
+                                            disabled={claimingNft ? 1 : 0}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                claimNFTs5(mintAmount);
+                                                getData();
+                                            }}
+                                        >
+                                            {claimingNft ? "BUSY" : "BUY "}
+                                            <ArrowIcon />
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </>
+                    )}
+                </div>
             </div>
         </section>
     );
