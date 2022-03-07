@@ -29,7 +29,7 @@
         "build": "npm run watch:css && react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "watch:css": "postcss src/styles/tailwind.css -o src/styles/output.css"
+        "watch:css": "postcss ./tailwind.css -o src/styles/output.css"
     },
     "eslintConfig": {
         "extends": [
