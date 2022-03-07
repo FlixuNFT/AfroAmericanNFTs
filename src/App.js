@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import MailchimpSubscribe from "react-mailchimp-subscribe";
+import { decode } from "html-entities";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
@@ -114,6 +116,9 @@ function App() {
             <HeroSection />
             <ShapeDivider />
             <Cards />
+            <BottomShapeDivider />
+            <Informational />
+            <Footer />
         </>
     );
 }
@@ -836,4 +841,236 @@ const Cards = (props) => {
         </section>
     );
 };
+
+const BottomShapeDivider = (props) => {
+    return (
+        <div className='rotate-180 mt-24'>
+            <svg data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
+                <path
+                    d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z'
+                    opacity='.25'
+                    class='shape-fill'
+                    fill='#3F1800'
+                    fill-opacity='1'
+                ></path>
+                <path
+                    d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z'
+                    opacity='.5'
+                    class='shape-fill'
+                    fill='#3F1800'
+                    fill-opacity='1'
+                ></path>
+                <path
+                    d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z'
+                    class='shape-fill'
+                    fill='#3F1800'
+                    fill-opacity='1'
+                ></path>
+            </svg>
+        </div>
+    );
+};
+
+const MailChimpSusbcribe = (props) => {
+    const MAILCHIMP_URL = "https://Flixu.us6.list-manage.com/subscribe/post?u=0655a15d9854b7fdbc0dafe46&amp;id=d852f8be2e";
+
+    return (
+        <MailchimpSubscribe
+            url={MAILCHIMP_URL}
+            render={(props) => {
+                const { subscribe, status, message } = props || {};
+                return <Newsletter status={status} message={message} onValidated={(formData) => subscribe(formData)} />;
+            }}
+        />
+    );
+};
+
+const Newsletter = ({ status, message, onValidated }) => {
+    const [error, setError] = useState(null);
+    const [email, setEmail] = useState(null);
+
+    /**
+     * Handle form submit.
+     *
+     * @return {{value}|*|boolean|null}
+     */
+    const handleFormSubmit = () => {
+        setError(null);
+
+        if (!email) {
+            setError("Please enter a valid email address");
+            return null;
+        }
+
+        const isFormValidated = onValidated({ EMAIL: email });
+
+        // On success return true
+        return email && email.indexOf("@") > -1 && isFormValidated;
+    };
+
+    /**
+     * Handle Input Key Event.
+     *
+     * @param event
+     */
+    const handleInputKeyEvent = (event) => {
+        setError(null);
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            handleFormSubmit();
+        }
+    };
+
+    /**
+     * Extract message from string.
+     *
+     * @param {String} message
+     * @return {null|*}
+     */
+    const getMessage = (message) => {
+        if (!message) {
+            return null;
+        }
+        const result = message?.split("-") ?? null;
+        if ("0" !== result?.[0]?.trim()) {
+            return decode(message);
+        }
+        const formattedMessage = result?.[1]?.trim() ?? null;
+        return formattedMessage ? decode(formattedMessage) : null;
+    };
+
+    return (
+        <>
+            <div className='max-w-4xl flex items-center flex-wrap gap-12'>
+                <label class='text-xl font-medium leading-5 text-gray-200 '>Get updates</label>
+
+                <div class='flex items-center justify-center border border-gray-200 rounded-lg '>
+                    <input
+                        onChange={(event) => setEmail(event?.target?.value ?? "")}
+                        onKeyUp={(event) => handleInputKeyEvent(event)}
+                        type='email'
+                        class='text-base  leading-4 p-4 relative z-0  border-primary border-2 focus:outline-none text-gray-800 placeholder-gray-500  rounded-l-lg'
+                        placeholder='Enter your email'
+                    />
+                    <button
+                        onClick={handleFormSubmit}
+                        aria-label='send'
+                        class='focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-primaryDark rounded-r-lg focus:bg-primaryDark cursor-pointer relative z-20 bg-primary'
+                        style={{ padding: "1.1rem" }}
+                    >
+                        <svg class='fill-current text-white' width='16' height='17' viewBox='0 0 16 17' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+                            <path
+                                d='M14.8934 7.39673L14.8884 7.39457L1.54219 1.9166C1.42993 1.87011 1.30778 1.85187 1.18666 1.86353C1.06554 1.87519 0.949225 1.91637 0.848125 1.9834C0.741311 2.05266 0.653573 2.14711 0.592805 2.25826C0.532037 2.36941 0.500145 2.49376 0.5 2.62013V6.12357C0.50006 6.29633 0.561019 6.46366 0.67237 6.59671C0.783722 6.72976 0.938491 6.82021 1.11 6.85246L8.38906 8.18438C8.41767 8.18974 8.44348 8.20482 8.46205 8.22701C8.48062 8.2492 8.49078 8.2771 8.49078 8.30591C8.49078 8.33472 8.48062 8.36263 8.46205 8.38481C8.44348 8.407 8.41767 8.42208 8.38906 8.42744L1.11031 9.75936C0.938851 9.79153 0.784092 9.88185 0.67269 10.0148C0.561288 10.1477 0.500219 10.3149 0.5 10.4876V13.9917C0.499917 14.1124 0.530111 14.2312 0.587871 14.3374C0.645632 14.4437 0.729152 14.5341 0.830938 14.6006C0.953375 14.6811 1.09706 14.7241 1.24406 14.7243C1.34626 14.7242 1.4474 14.7039 1.54156 14.6646L14.8875 9.21787L14.8934 9.21509C15.0731 9.13869 15.2262 9.01185 15.3337 8.85025C15.4413 8.68866 15.4986 8.49941 15.4986 8.30591C15.4986 8.11241 15.4413 7.92316 15.3337 7.76157C15.2262 7.59997 15.0731 7.47313 14.8934 7.39673Z'
+                                fill='currentColor'
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div className='newsletter-form-info'>
+                {status === "sending" && <div>Sending...</div>}
+                {status === "error" || error ? <div className='newsletter-form-error' dangerouslySetInnerHTML={{ __html: error || getMessage(message) }} /> : null}
+                {status === "success" && status !== "error" && !error && <div dangerouslySetInnerHTML={{ __html: decode(message) }} />}
+            </div>
+        </>
+    );
+};
+
+const Informational = (props) => {
+    return (
+        <section className='bg-thirdDark  p-12 '>
+            <div className='max-w-8xl mt-12'>
+                <div className=' text-white bg-thirdDarkCard px-12 py-8 rounded-xl leading-relaxed shadow-xl '>
+                    <p>
+                        You can buy any of them or a combination. Next time you want to pay or trade you can offer the NFTs for now, depending on the Price of ETH which at this time is almost half
+                        what it as a short time ago. So you have a built in mechanism of keeping your value or it may appreciate based on the ETH current situation.
+                    </p>
+
+                    <p>
+                        You can also trade with your Afro-American brothers against other items based on the NFT so if you need to get something from a “Brother” store you may offer him NFT in full or
+                        partial payment.
+                    </p>
+
+                    <p>Support black Enterprise!</p>
+
+                    <p>Get on the Afro American independence of current systems!</p>
+
+                    <p>There may be a possibility to trade with NFTs like other items in an exchange (Sushi Swap).</p>
+
+                    <p>
+                        This offer of NFT is not an offer for investment or promise of any kind, it's just a flag introduced in Black History month of 2022, to show that We all can have our privacy
+                        and independence.
+                    </p>
+
+                    <p>No promises are made.</p>
+
+                    <p>
+                        There may be possibilities down the line of getting a collateralized or non collateralized loan against these NFTs (it's called defi). No one will qualify you based on the
+                        credit history or color of your skin because it's all private to you! Sooner or later due to the NFT revolution no one will be able to count you out because you are Black!
+                    </p>
+
+                    <p>Blockchain has no color or race!</p>
+
+                    <p>What you do with your NFT is your private business! No one will know what you are doing unless you tell them.</p>
+                </div>
+
+                <div className=' text-white bg-thirdDarkCard px-12 py-8 mt-12 rounded-xl leading-relaxed shadow-xl '>
+                    <p>You can also register with us to be on our mailing list for any future development.</p>
+
+                    <p>If you have any questions the please ask in our support channel of our Discord or email afroamericannft@protonmail.com</p>
+                    <div className=''>
+                        <MailChimpSusbcribe></MailChimpSusbcribe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const Footer = (props) => {
+    return (
+        <footer className='bg-secondaryDark p-12  rounded-lg shadow md:px-6 md:py-8 '>
+            <div class='flex items-center justify-center gap-4 flex-col'>
+                <a href='https://flowbite.com' target='_blank' class='flex items-center mb-4 sm:mb-0'>
+                    <span class='self-center text-xl font-semibold whitespace-nowrap dark:text-white'>AFRO AMERICAN NFTS</span>
+                </a>
+                <ul class='flex flex-wrap items-center mb-6 sm:mb-0'>
+                    <li>
+                        <a href='#' class='mr-4 text-sm text-gray-500 hover:underline md:mr-6 dark:text-gray-400'>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href='#' class='mr-4 text-sm text-gray-500 hover:underline md:mr-6 dark:text-gray-400'>
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li>
+                        <a href='#' class='mr-4 text-sm text-gray-500 hover:underline md:mr-6 dark:text-gray-400'>
+                            Licensing
+                        </a>
+                    </li>
+                    <li>
+                        <a href='#' class='text-sm text-gray-500 hover:underline dark:text-gray-400'>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <hr class='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
+            <span class='block text-sm text-gray-500 sm:text-center dark:text-gray-400'>
+                © 2022{" "}
+                <a href='https://flowbite.com' target='_blank' class='hover:underline'>
+                    Flowbite™
+                </a>
+                . All Rights Reserved.
+            </span>
+        </footer>
+    );
+};
+
 export default App;
