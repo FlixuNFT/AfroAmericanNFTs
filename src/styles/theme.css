@@ -39,11 +39,11 @@ p {
     font-family: "PlusJakartaSanRegular", Arial, Helvetica, "sans-serif";
 }
 
-.hero-section__wrapper {
+/* .hero-section__wrapper {
     background-color: var(--secondaryDark);
     width: 100vw;
     height: calc(100vh - 150px);
-}
+} */
 .hero-section__text {
     display: flex;
     justify-content: center;

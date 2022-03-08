@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 @layer components {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .hero-section__wrapper {
+        /* background-color: var(--secondaryDark); */
+        /* width: 100vw; */
+        height: calc(100vh - 150px);
+    }
+
     .btn-primary {
         @apply bg-primary text-white rounded-lg font-bold py-4 px-6  flex gap-4 items-center  transition duration-500 ease-in select-none hover:bg-primaryDark focus:outline-none cursor-pointer;
     }

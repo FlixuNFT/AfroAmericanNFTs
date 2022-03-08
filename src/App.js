@@ -125,15 +125,28 @@ function App() {
 
 const HeroSection = (props) => {
     return (
-        <section className='hero-section__wrapper'>
-            <div className='hero-section__text'>
-                <div className='heading'>Mint Afro American NFTs</div>
-                <div className='heading__description'>
-                    <p>This NFT is an expression of the independence of the Afro-American community.</p>
-                    <p>
-                        No more depending on the system of discrimination and lack of financial possibilities due to color and race and the possibility to deal with each other via the NFT system
-                        independent of the current systems.
-                    </p>
+        <section className='bg-secondaryDark flex justify-center items-center hero-section__wrapper reltive'>
+            <div className='max-w-4xl relative'>
+                <div className='text-center'>
+                    <div className='heading'>Mint Afro American NFTs</div>
+                    <div className='heading__description'>
+                        <p>This NFT is an expression of the independence of the Afro-American community.</p>
+                        <p>
+                            No more depending on the system of discrimination and lack of financial possibilities due to color and race and the possibility to deal with each other via the NFT system
+                            independent of the current systems.
+                        </p>
+                    </div>
+                </div>
+
+                <div className='absolute  -bottom-24 right-1/2 m-auto animate-bounce'>
+                    <a href='#hsd'>
+                        <svg width='30' height='30' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                            <path
+                                d='M48 24C48 37.2581 37.2581 48 24 48C10.7419 48 0 37.2581 0 24C0 10.7419 10.7419 0 24 0C37.2581 0 48 10.7419 48 24ZM34.1032 21.2032L27.0968 28.5097V10.8387C27.0968 9.55161 26.0613 8.51613 24.7742 8.51613H23.2258C21.9387 8.51613 20.9032 9.55161 20.9032 10.8387V28.5097L13.8968 21.2032C12.9968 20.2645 11.4968 20.2452 10.5774 21.1645L9.52258 22.229C8.6129 23.1387 8.6129 24.6097 9.52258 25.5097L22.3548 38.3516C23.2645 39.2613 24.7355 39.2613 25.6355 38.3516L38.4774 25.5097C39.3871 24.6 39.3871 23.129 38.4774 22.229L37.4226 21.1645C36.5032 20.2452 35.0032 20.2645 34.1032 21.2032V21.2032Z'
+                                fill='white'
+                            />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </section>
@@ -142,7 +155,7 @@ const HeroSection = (props) => {
 
 const ShapeDivider = (props) => {
     return (
-        <div className='shape__divider'>
+        <div className='shape__divider' id='hsd'>
             <svg dataname='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
                 <path
                     d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z'
@@ -174,6 +187,7 @@ const ArrowIcon = (props) => {
         </svg>
     );
 };
+
 const LoadingIcon = (props) => {
     return (
         <svg fill='none' className='w-6 h-6 animate-spin' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'>
@@ -381,7 +395,7 @@ const Cards = (props) => {
     }, [blockchain.account]);
 
     return (
-        <section className='m-16 bg-dark max-w-8xl flex-wrap flex justify-center items-center '>
+        <section className='m-16 bg-dark max-w-8xl flex-wrap flex justify-center items-center ' id='cards'>
             <div className='flex-wrap flex gap-12 justify-evenly items-center'>
                 <div className='max-w-md'>
                     <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
