@@ -1039,7 +1039,14 @@ const Informational = (props) => {
                     </div>
                 </div>
 
-                {/* <div className=' text-white bg-thirdDarkCard px-12 py-8 mt-12 rounded-xl leading-relaxed shadow-xl '></div> */}
+                <div className=' text-white bg-thirdDarkCard px-12 py-8 mt-12 rounded-xl leading-relaxed shadow-xl '>
+                    <div className='flex flex-wrap justify-start items-center space-x-4'>
+                        <p> Sign up to be an affiliate and earn instant 15% commission.</p>
+                        <a href='https://svvynopcque.typeform.com/to/Dzwf41ht'>
+                            <div className='btn-primary max-w-max text-white'>Be an affiliate. Earn 15%</div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     );
