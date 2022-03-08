@@ -4,14 +4,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import "./styles/reset.css";
+// import "./styles/reset.css";
 import "./styles/theme.css";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
