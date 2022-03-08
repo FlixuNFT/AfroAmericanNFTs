@@ -398,11 +398,11 @@ const Cards = (props) => {
         <section className='m-16 bg-dark max-w-8xl flex-wrap flex justify-center items-center ' id='cards'>
             <div className='flex-wrap flex gap-12 justify-evenly items-center'>
                 <div className='max-w-md'>
-                    <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
+                    <div className='bg-card border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
                         {Number(data.totalSupply) === 100000 ? (
                             <>
                                 <img className='rounded-2xl' src={i1} alt='' />
-                                <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl'>
+                                <div className='py-6 px-8  bg-card rounded-b-2xl'>
                                     <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
                                     <p className='text-lg text-normalText mt-4 font-semibold'>
                                         You can still find Afro American for sale on{" "}
@@ -415,7 +415,7 @@ const Cards = (props) => {
                         ) : (
                             <>
                                 <img className='rounded-2xl' src={i1} alt='' />
-                                <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl text-normalTextg '>
+                                <div className='py-6 px-8  bg-card rounded-b-2xl text-normalTextg '>
                                     <h1 className='text-white font-bold text-2xl mb-3 hover:text-gray-50 hover:cursor-pointer regular-title'>0.0034 ETH PER $10 NFT</h1>
                                     <div className='tracking-wide mt-8'>
                                         <p>{feedback}</p>
@@ -489,11 +489,11 @@ const Cards = (props) => {
                 </div>
 
                 <div className='max-w-md'>
-                    <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
+                    <div className='bg-card border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
                         {Number(data.totalSupply) === 50000 ? (
                             <>
                                 <img className='rounded-2xl' src={i2} alt='' />
-                                <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl'>
+                                <div className='py-6 px-8  bg-card rounded-b-2xl'>
                                     <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
                                     <p className='text-lg text-normalText mt-4 font-semibold'>
                                         You can still find Afro American for sale on{" "}
@@ -506,7 +506,7 @@ const Cards = (props) => {
                         ) : (
                             <>
                                 <img className='rounded-2xl' src={i2} alt='' />
-                                <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl text-normalTextg '>
+                                <div className='py-6 px-8  bg-card rounded-b-2xl text-normalTextg '>
                                     <h1 className='text-white font-bold text-2xl mb-3 hover:text-gray-50 hover:cursor-pointer regular-title'>0.0085 ETH PER $25 NFT</h1>
                                     <div className='tracking-wide mt-8'>
                                         <p>{feedback}</p>
@@ -580,11 +580,11 @@ const Cards = (props) => {
                 </div>
 
                 <div className='max-w-md'>
-                    <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
+                    <div className='bg-card border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
                         {Number(data.totalSupply) === 50000 ? (
                             <>
                                 <img className='rounded-2xl' src={i3} alt='' />
-                                <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl'>
+                                <div className='py-6 px-8  bg-card rounded-b-2xl'>
                                     <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
                                     <p className='text-lg text-normalText mt-4 font-semibold'>
                                         You can still find Afro American for sale on{" "}
@@ -597,7 +597,7 @@ const Cards = (props) => {
                         ) : (
                             <>
                                 <img className='rounded-2xl' src={i3} alt='' />
-                                <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl text-normalTextg '>
+                                <div className='py-6 px-8  bg-card rounded-b-2xl text-normalTextg '>
                                     <h1 className='text-white font-bold text-2xl mb-3 hover:text-gray-50 hover:cursor-pointer regular-title'>0.034 ETH PER $100 NFT</h1>
                                     <div className='tracking-wide mt-8'>
                                         <p>{feedback}</p>
@@ -671,11 +671,11 @@ const Cards = (props) => {
                 </div>
 
                 <div className='max-w-md'>
-                    <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
+                    <div className='bg-card border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
                         {Number(data.totalSupply) === 50000 ? (
                             <>
                                 <img className='rounded-2xl' src={i4} alt='' />
-                                <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl'>
+                                <div className='py-6 px-8  bg-card rounded-b-2xl'>
                                     <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
                                     <p className='text-lg text-normalText mt-4 font-semibold'>
                                         You can still find Afro American for sale on{" "}
@@ -688,7 +688,7 @@ const Cards = (props) => {
                         ) : (
                             <>
                                 <img className='rounded-2xl' src={i4} alt='' />
-                                <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl text-normalTextg '>
+                                <div className='py-6 px-8  bg-card rounded-b-2xl text-normalTextg '>
                                     <h1 className='text-white font-bold text-2xl mb-3 hover:text-gray-50 hover:cursor-pointer regular-title'>0.17 ETH PER $500 NFT</h1>
                                     <div className='tracking-wide mt-8'>
                                         <p>{feedback}</p>
@@ -762,11 +762,11 @@ const Cards = (props) => {
                 </div>
 
                 <div className='max-w-md'>
-                    <div className='bg-secondaryDark border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
+                    <div className='bg-card border-card-border border-solid border relative shadow-lg hover:shadow-xl transition duration-500 rounded-2xl'>
                         {Number(data.totalSupply) === 50000 ? (
                             <>
                                 <img className='rounded-2xl' src={i4} alt='' />
-                                <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl'>
+                                <div className='py-6 px-8  bg-card rounded-b-2xl'>
                                     <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
                                     <p className='text-lg text-normalText mt-4 font-semibold'>
                                         You can still find Afro American for sale on{" "}
@@ -778,8 +778,8 @@ const Cards = (props) => {
                             </>
                         ) : (
                             <>
-                                <img className='rounded-2xl' src={i4} alt='' />
-                                <div className='py-6 px-8  bg-secondaryDark rounded-b-2xl text-normalTextg '>
+                                <img className='rounded-2xl ' src={i4} alt='' />
+                                <div className='py-6 px-8  bg-card rounded-b-2xl text-normalTextg '>
                                     <h1 className='text-white font-bold text-2xl mb-3 hover:text-gray-50 hover:cursor-pointer regular-title'>0.34 ETH PER $1000 NFT</h1>
                                     <div className='tracking-wide mt-8'>
                                         <p>{feedback}</p>

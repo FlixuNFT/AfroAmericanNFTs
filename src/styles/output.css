@@ -780,12 +780,18 @@ a:hover {
   border-color: rgb(34 35 51 / var(--tw-divide-opacity));
 }
 
-.self-center {
-  align-self: center;
+.divide-white > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-divide-opacity));
 }
 
-.scroll-smooth {
-  scroll-behavior: smooth;
+.divide-dark > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(15 15 17 / var(--tw-divide-opacity));
+}
+
+.self-center {
+  align-self: center;
 }
 
 .whitespace-nowrap {
@@ -819,6 +825,11 @@ a:hover {
   border-bottom-right-radius: 0.5rem;
 }
 
+.rounded-t-2xl {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -827,12 +838,25 @@ a:hover {
   border-width: 2px;
 }
 
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-b-4 {
+  border-bottom-width: 4px;
+}
+
+.border-b {
+  border-bottom-width: 1px;
+}
+
 .border-solid {
   border-style: solid;
 }
 
 .border-card-border {
-  border-color: rgba(208, 106, 234, 0.4);
+  --tw-border-opacity: 1;
+  border-color: rgb(63 24 0 / var(--tw-border-opacity));
 }
 
 .border-gray-200 {
@@ -845,6 +869,21 @@ a:hover {
   border-color: rgb(224 168 51 / var(--tw-border-opacity));
 }
 
+.border-dark {
+  --tw-border-opacity: 1;
+  border-color: rgb(15 15 17 / var(--tw-border-opacity));
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.border-thirdDark {
+  --tw-border-opacity: 1;
+  border-color: rgb(63 24 0 / var(--tw-border-opacity));
+}
+
 .bg-secondaryDark {
   --tw-bg-opacity: 1;
   background-color: rgb(34 35 51 / var(--tw-bg-opacity));
@@ -853,6 +892,11 @@ a:hover {
 .bg-dark {
   --tw-bg-opacity: 1;
   background-color: rgb(15 15 17 / var(--tw-bg-opacity));
+}
+
+.bg-card {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-primary {
@@ -866,7 +910,7 @@ a:hover {
 }
 
 .bg-thirdDarkCard {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .fill-current {
