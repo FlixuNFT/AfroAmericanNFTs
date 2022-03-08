@@ -1070,7 +1070,10 @@ const Footer = (props) => {
                     </li>
                 </ul>
             </div>
-            <div className='block text-sm text-gray-300 sm:text-center pt-6'>
+            <div className='block text-sm text-gray-100 sm:text-center pt-6'>
+                <p className='text-gray-100'>
+                    For any inquiries: <a href='mailto:afroamericannft@protonmail.com'>afroamericannft@protonmail.com</a>
+                </p>
                 © 2022{" "}
                 <a href='https://afroamericannft.com' target='_blank'>
                     Afro American NFT
