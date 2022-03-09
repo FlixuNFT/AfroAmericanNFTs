@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
+import { Link } from "react-router-dom";
 import { decode } from "html-entities";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
@@ -14,6 +15,7 @@ import i3 from "./assets/images/100.jpg";
 import i4 from "./assets/images/500.jpg";
 import i5 from "./assets/images/1000.jpg";
 import Web3 from "web3";
+import Footer from "./components/Footer";
 
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
@@ -406,7 +408,7 @@ const Cards = (props) => {
                                     <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
                                     <p className='text-lg text-normalText mt-4 font-semibold'>
                                         You can still find Afro American for sale on{" "}
-                                        <a target={"_blank"} className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
+                                        <a className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
                                             Opensea.io
                                         </a>
                                     </p>
@@ -497,7 +499,7 @@ const Cards = (props) => {
                                     <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
                                     <p className='text-lg text-normalText mt-4 font-semibold'>
                                         You can still find Afro American for sale on{" "}
-                                        <a target={"_blank"} className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
+                                        <a className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
                                             Opensea.io
                                         </a>
                                     </p>
@@ -588,7 +590,7 @@ const Cards = (props) => {
                                     <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
                                     <p className='text-lg text-normalText mt-4 font-semibold'>
                                         You can still find Afro American for sale on{" "}
-                                        <a target={"_blank"} className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
+                                        <a className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
                                             Opensea.io
                                         </a>
                                     </p>
@@ -679,7 +681,7 @@ const Cards = (props) => {
                                     <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
                                     <p className='text-lg text-normalText mt-4 font-semibold'>
                                         You can still find Afro American for sale on{" "}
-                                        <a target={"_blank"} className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
+                                        <a className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
                                             Opensea.io
                                         </a>
                                     </p>
@@ -770,7 +772,7 @@ const Cards = (props) => {
                                     <p className='text-lg text-white font-semibold regular-title'>The sale has ended.</p>
                                     <p className='text-lg text-normalText mt-4 font-semibold'>
                                         You can still find Afro American for sale on{" "}
-                                        <a target={"_blank"} className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
+                                        <a className='text-gray-200' href={"https://opensea.io/collection/afroamerican"}>
                                             Opensea.io
                                         </a>
                                     </p>
@@ -865,20 +867,20 @@ const BottomShapeDivider = (props) => {
                     opacity='.25'
                     className='shape-fill'
                     fill='#3F1800'
-                    fill-opacity='1'
+                    fillOpacity='1'
                 ></path>
                 <path
                     d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z'
                     opacity='.5'
                     className='shape-fill'
                     fill='#3F1800'
-                    fill-opacity='1'
+                    fillOpacity='1'
                 ></path>
                 <path
                     d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z'
                     className='shape-fill'
                     fill='#3F1800'
-                    fill-opacity='1'
+                    fillOpacity='1'
                 ></path>
             </svg>
         </div>
@@ -1049,45 +1051,6 @@ const Informational = (props) => {
                 </div>
             </div>
         </section>
-    );
-};
-
-const Footer = (props) => {
-    return (
-        <footer className='bg-dark p-12  rounded-lg md:px-6 md:py-8 divide-y divide-secondaryDark    '>
-            <div className='flex items-center justify-center gap-4 flex-col pb-6'>
-                <a href='https://flowbite.com' target='_blank' className='flex items-center mb-4 sm:mb-0'>
-                    <span className='self-center text-xl font-semibold whitespace-nowrap text-white'>AFRO AMERICAN NFTS</span>
-                </a>
-                <ul className='flex flex-wrap items-center mb-6 sm:mb-0  space-x-8 '>
-                    <li>
-                        <a href='#' className=''>
-                            Privacy Policy
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#' className=' '>
-                            Terms of service
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#' className='text-sm  hover:underline '>
-                            DMCA
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div className='block text-sm text-gray-100 sm:text-center pt-6'>
-                <p className='text-gray-100'>
-                    For any inquiries: <a href='mailto:afroamericannft@protonmail.com'>afroamericannft@protonmail.com</a>
-                </p>
-                © 2022{" "}
-                <a href='https://afroamericannft.com' target='_blank'>
-                    Afro American NFT
-                </a>
-                . All Rights Reserved.
-            </div>
-        </footer>
     );
 };
 
